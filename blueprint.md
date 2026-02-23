@@ -1,33 +1,29 @@
-# Lotto Number Generator - Casino Edition
+# Gossip Note (가십노트) Blueprint
 
-## Overview
-A high-performance, visually appealing Lotto Number Generator inspired by casino slot machines and classic lottery drawings. It features a physical "lever" interaction and a "pouch" that ejects multiple sets of numbers simultaneously.
+## 1. 서비스 컨셉: "아이스브레이킹의 5분 치트키"
+단순히 뉴스를 나열하는 것이 아니라, 상대방의 뇌에 도파민을 생성시키는 대화 가이드를 제공하는 고효율 대화 소재 큐레이션 플랫폼입니다.
 
-## Features
-- **Slot Machine Lever**: The generation button is styled as a 3D lever that moves when clicked.
-- **Lotto Pouch Animation**: Numbers are ejected from a central "pouch" icon with a dynamic "pop-out" effect.
-- **5-Set Generation**: Each draw produces 5 distinct sets of 6 numbers for a complete experience.
-- **Theme Switching**: Dark/Light mode persistence.
-- **Dynamic Color Coding**: Balls color-coded by number range.
-- **Responsive Layout**: Mobile-first design using modern CSS.
+## 2. 핵심 기능 (Features)
+- **3-Step 서머리**: [팩트 - 논란/반전 - 질문] 구조의 마이크로 러닝 콘텐츠.
+- **TPO 맞춤형 필터링**: MBTI, 직업군, 장소(성수, 강남 등) 기반 큐레이션.
+- **실시간 핫 키워드**: 대화 직전 5분 동안 가장 뜨거운 감자 요약 ('실시간 스낵 뉴스').
+- **대화 시나리오**: 물꼬를 트는 오프닝 멘트 및 질문지 제공.
 
-## Design Specification
-- **Interactivity**: 
-    - Lever "Pull" animation (active state).
-    - Balls "flying" from the center pouch to their slots.
-- **Layout**: 5 rows of combinations displayed in a sleek, glassmorphic container.
-- **Color Palette**: Rich casino-inspired colors (Gold, Emerald, Deep Red) mixed with modern OKLCH themes.
+## 3. 과학적 & 논리적 근거
+| 구분 | 근거 내용 | 비즈니스 적용 포인트 |
+| :--- | :--- | :--- |
+| **인지 부하 이론** | 인간의 작업 기억 한계 (5분 요약이 최적) | 3줄 요약 + 질문지 형태 제공 |
+| **사회적 침습** | 가십은 유대감 형성의 도구 (로빈 던바) | '유대감 형성 도구'로 브랜딩 |
+| **도파민과 신기성** | 새로운 정보 접할 때 도파민 분출 | '의외의 사실(Trivia)' 위주 구성 |
+| **불확실성 감소** | 공통 화제로 첫 만남의 불안 해소 | 오프닝 멘트 시나리오 제공 |
 
-## Tech Stack
-- **HTML5/CSS3**: Custom properties, OKLCH, Grid/Flexbox.
-- **JavaScript**: ES Modules, Web Components, Async/Await for timing.
-- **Git**: Deployment and version control.
+## 4. 디자인 전략 (Visual Strategy)
+- **Aesthetic**: 프리미엄 다크 모드 + 도파민 액센트 컬러 (Vibrant Orange/Purple).
+- **Texture**: 배경에 미세한 노이즈 텍스처를 적용하여 고급스러운 질감 구현.
+- **Effects**: 다층 레이어 드롭 쉐도우 및 글로우 효과를 활용한 카드 디자인.
+- **Components**: Web Components를 활용한 `GossipCard`, `TPOFilter` 모듈화.
 
-## Development Plan
-1. **[Completed] Theme Switcher**: Dark/Light mode implementation.
-2. **[Current] Casino Experience**:
-    - Implement Slot Lever UI and Animation.
-    - Create the "Lotto Pouch" visual container.
-    - Update `main.js` to generate 5 sets and handle "ejection" animations.
-3. **Refactor UI**: Ensure 5 sets fit perfectly on all screens.
-4. **Validation**: Error checking and performance tuning.
+## 5. 기술 로드맵
+- **MVP**: 웹 페이지 형태, 검색어 기반 핫 소재 5선 매일 업데이트.
+- **V1.0**: 사용자 성향 입력 및 카테고리화 (IT, 연예, 경제, 로컬).
+- **V2.0**: 피드백 루프 기반 '성공 확률' 통계 데이터 제공 및 B2B 제휴.

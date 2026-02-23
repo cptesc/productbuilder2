@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gossip Note | 가십노트 - 아이스브레이킹 5분 치트키</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    
+    <header class="app-header">
+        <div class="logo">
+            <h1>GOSSIP<span>NOTE</span></h1>
+            <p class="tagline">도파민 큐레이션: 당신의 대화에 활기를 불어넣으세요.</p>
+        </div>
+        <div class="header-actions">
+            <span class="live-indicator">LIVE</span>
+            <div id="hot-keywords" class="ticker-wrap">
+                <div class="ticker">
+                    <span class="ticker-item">#성수동 팝업</span>
+                    <span class="ticker-item">#애플 비전 프로</span>
+                    <span class="ticker-item">#MBTI E타입 공략</span>
+                    <span class="ticker-item">#요즘 뜨는 전시</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <!-- TPO Filter Section -->
+        <section class="filter-section" id="tpo-filter-container">
+            <tpo-filter></tpo-filter>
+        </section>
+
+        <!-- Gossip Feed Section -->
+        <section class="feed-section">
+            <div class="feed-header">
+                <h2>오늘의 도파민 카드</h2>
+                <div class="feed-stats">성공 확률 분석 기반 추천</div>
+            </div>
+            <div id="gossip-feed" class="gossip-grid">
+                <!-- Gossip cards will be injected here via JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Gossip Note. Powered by Cognitive Science & Data.</p>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
