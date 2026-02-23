@@ -35,7 +35,6 @@ customElements.define('lotto-ball', LottoBall);
 const lever = document.getElementById('lever');
 const pouch = document.getElementById('lotto-pouch');
 const drawRows = document.querySelectorAll('.draw-row');
-const historyList = document.getElementById('history-list');
 
 let isDrawing = false;
 
@@ -72,10 +71,6 @@ async function drawSequence() {
             const num = allSets[rowIdx][ballIdx];
             const ball = document.createElement('lotto-ball');
             ball.setAttribute('number', num);
-            
-            // Temporary ball for ejection effect
-            const ballEl = ball.querySelector('.ball');
-            
             drawRows[rowIdx].appendChild(ball);
             
             // Staggered ejection
@@ -85,20 +80,7 @@ async function drawSequence() {
     }
 
     pouch.classList.remove('active');
-    addToHistory(allSets[0]); // Add the first set to history as a sample
     isDrawing = false;
-}
-
-function addToHistory(numbers) {
-    const historyItem = document.createElement('div');
-    historyItem.className = 'history-item';
-    numbers.forEach(num => {
-        const ball = document.createElement('lotto-ball');
-        ball.setAttribute('number', num);
-        historyItem.appendChild(ball);
-    });
-    historyList.prepend(historyItem);
-    if (historyList.children.length > 10) historyList.removeChild(historyList.lastChild);
 }
 
 lever.addEventListener('click', drawSequence);

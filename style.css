@@ -255,33 +255,6 @@ h1 {
     opacity: 0.6;
 }
 
-.history-section {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-}
-
-.history-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.history-item {
-    background: oklch(1 0 0 / 0.02);
-    padding: 1rem;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: center;
-    gap: 0.4rem;
-}
-
-.history-item .ball {
-    width: 25px;
-    height: 25px;
-    font-size: 0.7rem;
-}
-
 @media (max-width: 600px) {
     h1 { font-size: 2rem; }
     .draw-row { gap: 0.4rem; padding: 0.5rem; }
