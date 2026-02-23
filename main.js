@@ -1,3 +1,19 @@
+// Theme Management
+const themeToggle = document.getElementById('theme-toggle');
+const htmlElement = document.documentElement;
+
+// Initialize theme from localStorage
+const savedTheme = localStorage.getItem('theme') || 'dark';
+htmlElement.setAttribute('data-theme', savedTheme);
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+});
+
 // Lotto Ball Web Component
 class LottoBall extends HTMLElement {
     constructor() {
@@ -90,5 +106,3 @@ function addToHistory(numbers) {
 }
 
 generateBtn.addEventListener('click', drawSequence);
-
-// Initial empty state message or placeholder could go here

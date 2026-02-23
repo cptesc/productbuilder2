@@ -1,4 +1,5 @@
 :root {
+    /* Dark Theme (Default) */
     --bg-color: oklch(0.15 0.02 240);
     --card-bg: oklch(0.2 0.03 240 / 0.7);
     --text-color: oklch(0.98 0.01 240);
@@ -9,26 +10,46 @@
     --ball-31: oklch(0.65 0 0);      /* Gray/Silver */
     --ball-41: oklch(0.7 0.15 140);  /* Green */
     --shadow-color: oklch(0 0 0 / 0.3);
+    --header-gradient: linear-gradient(to bottom right, oklch(0.9 0.05 260), oklch(0.7 0.2 260));
+    --border-color: oklch(1 0 0 / 0.1);
+}
+
+[data-theme="light"] {
+    /* Light Theme */
+    --bg-color: oklch(0.98 0.01 240);
+    --card-bg: oklch(1 0 0 / 0.8);
+    --text-color: oklch(0.2 0.02 240);
+    --accent-color: oklch(0.6 0.2 260);
+    --shadow-color: oklch(0 0 0 / 0.1);
+    --header-gradient: linear-gradient(to bottom right, oklch(0.3 0.1 260), oklch(0.5 0.2 260));
+    --border-color: oklch(0 0 0 / 0.05);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: var(--bg-color);
     background-image: 
-        radial-gradient(at 0% 0%, oklch(0.25 0.05 260) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, oklch(0.25 0.05 320) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, oklch(0.25 0.05 260 / 0.2) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, oklch(0.25 0.05 320 / 0.2) 0px, transparent 50%);
     color: var(--text-color);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow-x: hidden;
+}
+
+[data-theme="light"] body {
+    background-image: 
+        radial-gradient(at 0% 0%, oklch(0.9 0.05 260 / 0.3) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, oklch(0.9 0.05 320 / 0.3) 0px, transparent 50%);
 }
 
 body::before {
@@ -43,6 +64,29 @@ body::before {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
+.theme-toggle {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    z-index: 10;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
 .container {
     width: 90%;
     max-width: 600px;
@@ -50,17 +94,18 @@ body::before {
     background: var(--card-bg);
     backdrop-filter: blur(12px);
     border-radius: 2rem;
-    border: 1px solid oklch(1 0 0 / 0.1);
+    border: 1px solid var(--border-color);
     box-shadow: 0 25px 50px -12px var(--shadow-color);
     text-align: center;
     z-index: 1;
+    position: relative;
 }
 
 h1 {
     font-size: 2.5rem;
     font-weight: 800;
     margin-bottom: 2rem;
-    background: linear-gradient(to bottom right, oklch(0.9 0.05 260), oklch(0.7 0.2 260));
+    background: var(--header-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.02em;
@@ -136,7 +181,7 @@ lotto-ball {
 .history-section {
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid oklch(1 0 0 / 0.1);
+    border-top: 1px solid var(--border-color);
 }
 
 .history-section h2 {
