@@ -1,46 +1,33 @@
-# Lotto Number Generator - Modern Edition
+# Lotto Number Generator - Casino Edition
 
 ## Overview
-A high-performance, visually appealing Lotto Number Generator built with modern web standards (ES Modules, Web Components, and CSS Baseline features). It provides an immersive "drawing" experience with smooth animations and a vibrant design.
+A high-performance, visually appealing Lotto Number Generator inspired by casino slot machines and classic lottery drawings. It features a physical "lever" interaction and a "pouch" that ejects multiple sets of numbers simultaneously.
 
 ## Features
-- **Immersive Drawing Experience**: Instead of instant display, numbers "roll" or appear with animations.
-- **Dynamic Color Coding**: Balls are color-coded based on their number range (standard lotto style).
-- **Theme Switching**: Seamless transition between Dark Mode and Light Mode with persistence.
-- **Responsive Layout**: Works perfectly on mobile, tablet, and desktop using Container Queries and Flexbox.
-- **History Tracking**: Keeps track of recent draws during the session.
-- **Interactive UI**: Hover effects, tactile buttons, and glassmorphism elements.
+- **Slot Machine Lever**: The generation button is styled as a 3D lever that moves when clicked.
+- **Lotto Pouch Animation**: Numbers are ejected from a central "pouch" icon with a dynamic "pop-out" effect.
+- **5-Set Generation**: Each draw produces 5 distinct sets of 6 numbers for a complete experience.
+- **Theme Switching**: Dark/Light mode persistence.
+- **Dynamic Color Coding**: Balls color-coded by number range.
+- **Responsive Layout**: Mobile-first design using modern CSS.
 
 ## Design Specification
-- **Typography**: Expressive sans-serif fonts (e.g., 'Inter' or system defaults) with emphasized font sizes for the numbers.
-- **Color Palette**: 
-    - **Dark Mode**: Deep navy/charcoal backgrounds with vibrant OKLCH accents.
-    - **Light Mode**: Clean white/soft gray backgrounds with high-contrast elements.
-    - **Lotto Balls**: Vibrant OKLCH colors (1-10: Yellow, 11-20: Blue, 21-30: Red, 31-40: Gray, 41-45: Green).
-- **Texture**: Subtle noise texture on the background for a premium feel.
-- **Shadows**: Multi-layered soft shadows to create depth (lifted cards).
-- **Interactivity**: Glow effects on buttons and interactive elements.
+- **Interactivity**: 
+    - Lever "Pull" animation (active state).
+    - Balls "flying" from the center pouch to their slots.
+- **Layout**: 5 rows of combinations displayed in a sleek, glassmorphic container.
+- **Color Palette**: Rich casino-inspired colors (Gold, Emerald, Deep Red) mixed with modern OKLCH themes.
 
 ## Tech Stack
-- **HTML5**: Semantic structure.
-- **CSS**: Modern features (OKLCH, `:has()`, Cascade Layers, Variables).
-- **JavaScript**: ES Modules, Web Components (Custom Elements), Shadow DOM.
-- **Git**: Version control and deployment orchestration.
+- **HTML5/CSS3**: Custom properties, OKLCH, Grid/Flexbox.
+- **JavaScript**: ES Modules, Web Components, Async/Await for timing.
+- **Git**: Deployment and version control.
 
 ## Development Plan
-1. **[Completed] Update Blueprint**: Define the vision and technical path.
-2. **Implement Theme Switcher**:
-    - Define CSS variables for both Light and Dark modes.
-    - Add a toggle UI component in `index.html`.
-    - Add logic in `main.js` to handle theme changes and `localStorage` persistence.
-3. **Refactor HTML**: Set up the container for the Web Component and main UI.
-4. **Enhance CSS**: Implement the global styles, theme variables, and animations.
-5. **Implement Web Components**:
-    - `<lotto-ball>`: A reusable component for individual numbers with dynamic styling.
-    - `<lotto-draw>`: A component to manage the drawing sequence.
-6. **Update Logic (main.js)**: Orchestrate the drawing process and history management.
-7. **Git Deployment**:
-    - Initialize/Verify Git repository.
-    - Stage and commit all changes.
-    - (Optional) Configure and deploy to Firebase Hosting or other platforms if requested.
-8. **Validation**: Check for errors and ensure smooth performance in the preview.
+1. **[Completed] Theme Switcher**: Dark/Light mode implementation.
+2. **[Current] Casino Experience**:
+    - Implement Slot Lever UI and Animation.
+    - Create the "Lotto Pouch" visual container.
+    - Update `main.js` to generate 5 sets and handle "ejection" animations.
+3. **Refactor UI**: Ensure 5 sets fit perfectly on all screens.
+4. **Validation**: Error checking and performance tuning.

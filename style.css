@@ -1,43 +1,42 @@
 :root {
     /* Dark Theme (Default) */
-    --bg-color: oklch(0.15 0.02 240);
-    --card-bg: oklch(0.2 0.03 240 / 0.7);
+    --bg-color: oklch(0.12 0.02 240);
+    --card-bg: oklch(0.18 0.03 240 / 0.8);
     --text-color: oklch(0.98 0.01 240);
-    --accent-color: oklch(0.65 0.25 260);
-    --ball-1: oklch(0.75 0.15 80);  /* Yellow/Gold */
-    --ball-11: oklch(0.65 0.15 220); /* Blue */
-    --ball-21: oklch(0.6 0.18 20);   /* Red */
-    --ball-31: oklch(0.65 0 0);      /* Gray/Silver */
-    --ball-41: oklch(0.7 0.15 140);  /* Green */
-    --shadow-color: oklch(0 0 0 / 0.3);
-    --header-gradient: linear-gradient(to bottom right, oklch(0.9 0.05 260), oklch(0.7 0.2 260));
+    --accent-color: oklch(0.7 0.2 40); /* Casino Red/Gold accent */
+    --ball-1: oklch(0.8 0.18 85);
+    --ball-11: oklch(0.7 0.15 230);
+    --ball-21: oklch(0.65 0.2 30);
+    --ball-31: oklch(0.7 0 0);
+    --ball-41: oklch(0.75 0.18 150);
+    --shadow-color: oklch(0 0 0 / 0.5);
+    --header-gradient: linear-gradient(135deg, oklch(0.8 0.2 40), oklch(0.6 0.2 20));
     --border-color: oklch(1 0 0 / 0.1);
 }
 
 [data-theme="light"] {
-    /* Light Theme */
-    --bg-color: oklch(0.98 0.01 240);
-    --card-bg: oklch(1 0 0 / 0.8);
-    --text-color: oklch(0.2 0.02 240);
-    --accent-color: oklch(0.6 0.2 260);
-    --shadow-color: oklch(0 0 0 / 0.1);
-    --header-gradient: linear-gradient(to bottom right, oklch(0.3 0.1 260), oklch(0.5 0.2 260));
-    --border-color: oklch(0 0 0 / 0.05);
+    --bg-color: oklch(0.95 0.01 240);
+    --card-bg: oklch(1 0 0 / 0.9);
+    --text-color: oklch(0.15 0.02 240);
+    --accent-color: oklch(0.55 0.25 30);
+    --shadow-color: oklch(0 0 0 / 0.15);
+    --header-gradient: linear-gradient(135deg, oklch(0.5 0.2 30), oklch(0.3 0.1 20));
+    --border-color: oklch(0 0 0 / 0.08);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 
 body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     background-color: var(--bg-color);
     background-image: 
-        radial-gradient(at 0% 0%, oklch(0.25 0.05 260 / 0.2) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, oklch(0.25 0.05 320 / 0.2) 0px, transparent 50%);
+        radial-gradient(circle at 20% 30%, oklch(0.7 0.2 40 / 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, oklch(0.5 0.2 240 / 0.05) 0%, transparent 40%);
     color: var(--text-color);
     min-height: 100vh;
     display: flex;
@@ -46,130 +45,139 @@ body {
     overflow-x: hidden;
 }
 
-[data-theme="light"] body {
-    background-image: 
-        radial-gradient(at 0% 0%, oklch(0.9 0.05 260 / 0.3) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, oklch(0.9 0.05 320 / 0.3) 0px, transparent 50%);
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.05;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
 .theme-toggle {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     color: var(--text-color);
-    padding: 0.75rem;
+    padding: 0.8rem;
     border-radius: 50%;
     cursor: pointer;
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    box-shadow: 0 4px 12px var(--shadow-color);
-    z-index: 10;
-}
-
-.theme-toggle:hover {
-    transform: scale(1.1);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    box-shadow: 0 8px 20px var(--shadow-color);
 }
 
 .container {
-    width: 90%;
-    max-width: 600px;
-    padding: 2.5rem;
+    width: 95%;
+    max-width: 800px;
+    padding: 3rem 2rem;
     background: var(--card-bg);
-    backdrop-filter: blur(12px);
-    border-radius: 2rem;
+    backdrop-filter: blur(20px);
+    border-radius: 3rem;
     border: 1px solid var(--border-color);
-    box-shadow: 0 25px 50px -12px var(--shadow-color);
+    box-shadow: 0 40px 100px -20px var(--shadow-color);
     text-align: center;
-    z-index: 1;
     position: relative;
 }
 
 h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 2rem;
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
     background: var(--header-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
 }
 
-#generate {
-    background: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 1rem 2.5rem;
-    font-size: 1.25rem;
-    font-weight: 700;
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 20px -5px oklch(0.65 0.25 260 / 0.4);
-    margin-bottom: 3rem;
-    position: relative;
-    overflow: hidden;
-}
-
-#generate:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 15px 30px -5px oklch(0.65 0.25 260 / 0.5);
-}
-
-#generate:active {
-    transform: translateY(0) scale(0.98);
-}
-
-.draw-area {
+/* Lotto Pouch Area */
+.pouch-container {
+    margin-bottom: 2rem;
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    min-height: 80px;
-    margin-bottom: 2rem;
 }
 
-/* Lotto Ball Component Styles */
-lotto-ball {
-    display: inline-block;
+.lotto-pouch {
+    width: 100px;
+    height: 100px;
+    background: var(--accent-color);
+    border-radius: 50% 50% 40% 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    box-shadow: 0 15px 30px oklch(0.5 0.2 40 / 0.4);
+    position: relative;
+    z-index: 5;
+    animation: pouchIdle 3s ease-in-out infinite;
 }
 
+@keyframes pouchIdle {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-10px) scale(1.05); }
+}
+
+.lotto-pouch.active {
+    animation: pouchVibrate 0.1s infinite;
+}
+
+@keyframes pouchVibrate {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    50% { transform: translate(-1px, -2px) rotate(-1deg); }
+    100% { transform: translate(-3px, 0px) rotate(1deg); }
+}
+
+/* Draw Sets Layout */
+.draw-sets {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin: 2rem 0;
+    perspective: 1000px;
+}
+
+.draw-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    min-height: 70px;
+    padding: 1rem;
+    background: oklch(1 0 0 / 0.03);
+    border-radius: 1.5rem;
+    border: 1px solid oklch(1 0 0 / 0.05);
+    transition: transform 0.3s ease;
+}
+
+.draw-row:hover {
+    background: oklch(1 0 0 / 0.06);
+    transform: translateZ(20px);
+}
+
+/* Lotto Ball Component */
 .ball {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 800;
     color: oklch(0.1 0 0);
     box-shadow: 
-        inset -4px -4px 8px oklch(0 0 0 / 0.2),
-        inset 4px 4px 8px oklch(1 0 0 / 0.3),
+        inset -3px -3px 6px oklch(0 0 0 / 0.3),
+        inset 3px 3px 6px oklch(1 0 0 / 0.4),
         0 10px 20px var(--shadow-color);
-    animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    transform: scale(0);
+    position: relative;
 }
 
-@keyframes popIn {
-    to { transform: scale(1); }
+/* Ejection Animation */
+.ball.ejecting {
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    transform: translate(-50%, 0) scale(0);
+    z-index: 2;
+}
+
+@keyframes flyToRow {
+    0% { transform: translate(-50%, 0) scale(0.5); opacity: 0; }
+    50% { transform: translate(var(--target-x), var(--target-y)) scale(1.2); opacity: 1; }
+    100% { transform: translate(0, 0) scale(1); position: static; }
 }
 
 .ball.n1 { background: var(--ball-1); }
@@ -178,51 +186,104 @@ lotto-ball {
 .ball.n31 { background: var(--ball-31); }
 .ball.n41 { background: var(--ball-41); }
 
-.history-section {
+/* Slot Lever UI */
+.controls {
     margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.lever-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lever {
+    width: 60px;
+    height: 120px;
+    position: relative;
+    cursor: pointer;
+}
+
+.lever-base {
+    width: 100%;
+    height: 40px;
+    background: oklch(0.4 0.05 0);
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    box-shadow: inset 0 2px 5px oklch(0 0 0 / 0.5);
+}
+
+.lever-handle {
+    width: 12px;
+    height: 80px;
+    background: linear-gradient(to right, #888, #eee, #888);
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: bottom center;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 6px;
+}
+
+.lever-handle::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at 30% 30%, oklch(0.7 0.2 40), oklch(0.4 0.2 20));
+    border-radius: 50%;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 5px 15px oklch(0 0 0 / 0.3);
+}
+
+.lever.pulled .lever-handle {
+    transform: translateX(-50%) rotateX(160deg);
+}
+
+.lever-label {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    opacity: 0.6;
+}
+
+.history-section {
+    margin-top: 4rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border-color);
 }
 
-.history-section h2 {
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.6;
-    margin-bottom: 1.5rem;
-}
-
 .history-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
 }
 
 .history-item {
+    background: oklch(1 0 0 / 0.02);
+    padding: 1rem;
+    border-radius: 1rem;
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
-    opacity: 0.8;
-    transform: scale(0.9);
+    gap: 0.4rem;
 }
 
 .history-item .ball {
-    width: 30px;
-    height: 30px;
-    font-size: 0.8rem;
-    box-shadow: 0 4px 8px var(--shadow-color);
+    width: 25px;
+    height: 25px;
+    font-size: 0.7rem;
 }
 
-@media (max-width: 480px) {
-    .container {
-        padding: 1.5rem;
-    }
-    h1 {
-        font-size: 1.8rem;
-    }
-    .ball {
-        width: 45px;
-        height: 45px;
-        font-size: 1.1rem;
-    }
+@media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    .draw-row { gap: 0.4rem; padding: 0.5rem; }
+    .ball { width: 35px; height: 35px; font-size: 1rem; }
 }

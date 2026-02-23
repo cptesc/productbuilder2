@@ -2,51 +2,39 @@
 const themeToggle = document.getElementById('theme-toggle');
 const htmlElement = document.documentElement;
 
-// Initialize theme from localStorage
 const savedTheme = localStorage.getItem('theme') || 'dark';
 htmlElement.setAttribute('data-theme', savedTheme);
 
 themeToggle.addEventListener('click', () => {
     const currentTheme = htmlElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
     htmlElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
 });
 
 // Lotto Ball Web Component
 class LottoBall extends HTMLElement {
-    constructor() {
-        super();
-    }
-
+    constructor() { super(); }
     connectedCallback() {
         const number = this.getAttribute('number');
-        const isSmall = this.hasAttribute('small');
-        this.render(number, isSmall);
+        this.render(number);
     }
-
-    render(number, isSmall) {
+    render(number) {
         const num = parseInt(number);
         let colorClass = 'n1';
         if (num >= 11 && num <= 20) colorClass = 'n11';
         else if (num >= 21 && num <= 30) colorClass = 'n21';
         else if (num >= 31 && num <= 40) colorClass = 'n31';
         else if (num >= 41) colorClass = 'n41';
-
-        this.innerHTML = `
-            <div class="ball ${colorClass}">
-                ${number}
-            </div>
-        `;
+        this.innerHTML = `<div class="ball ${colorClass}">${number}</div>`;
     }
 }
-
 customElements.define('lotto-ball', LottoBall);
 
 // Main Application Logic
-const drawArea = document.getElementById('draw-area');
-const generateBtn = document.getElementById('generate');
+const lever = document.getElementById('lever');
+const pouch = document.getElementById('lotto-pouch');
+const drawRows = document.querySelectorAll('.draw-row');
 const historyList = document.getElementById('history-list');
 
 let isDrawing = false;
@@ -62,47 +50,55 @@ function generateLottoNumbers() {
 async function drawSequence() {
     if (isDrawing) return;
     isDrawing = true;
-    generateBtn.disabled = true;
-    generateBtn.textContent = 'Drawing...';
 
-    // Move current balls to history if they exist
-    const currentBalls = Array.from(drawArea.querySelectorAll('lotto-ball'));
-    if (currentBalls.length > 0) {
-        addToHistory(currentBalls.map(b => b.getAttribute('number')));
+    // Lever Animation
+    lever.classList.add('pulled');
+    pouch.classList.add('active');
+    
+    // Clear previous results
+    drawRows.forEach(row => row.innerHTML = '');
+
+    await new Promise(resolve => setTimeout(resolve, 600));
+    lever.classList.remove('pulled');
+
+    const allSets = [];
+    for (let i = 0; i < 5; i++) {
+        allSets.push(generateLottoNumbers());
     }
 
-    drawArea.innerHTML = '';
-    const newNumbers = generateLottoNumbers();
-
-    for (const num of newNumbers) {
-        const ball = document.createElement('lotto-ball');
-        ball.setAttribute('number', num);
-        drawArea.appendChild(ball);
-        await new Promise(resolve => setTimeout(resolve, 300)); // Staggered reveal
+    // Sequence for each row and ball
+    for (let ballIdx = 0; ballIdx < 6; ballIdx++) {
+        for (let rowIdx = 0; rowIdx < 5; rowIdx++) {
+            const num = allSets[rowIdx][ballIdx];
+            const ball = document.createElement('lotto-ball');
+            ball.setAttribute('number', num);
+            
+            // Temporary ball for ejection effect
+            const ballEl = ball.querySelector('.ball');
+            
+            drawRows[rowIdx].appendChild(ball);
+            
+            // Staggered ejection
+            await new Promise(resolve => setTimeout(resolve, 50));
+        }
+        await new Promise(resolve => setTimeout(resolve, 200));
     }
 
+    pouch.classList.remove('active');
+    addToHistory(allSets[0]); // Add the first set to history as a sample
     isDrawing = false;
-    generateBtn.disabled = false;
-    generateBtn.textContent = 'Draw Numbers';
 }
 
 function addToHistory(numbers) {
     const historyItem = document.createElement('div');
     historyItem.className = 'history-item';
-    
     numbers.forEach(num => {
         const ball = document.createElement('lotto-ball');
         ball.setAttribute('number', num);
-        ball.setAttribute('small', '');
         historyItem.appendChild(ball);
     });
-
     historyList.prepend(historyItem);
-
-    // Limit history to 5 items
-    if (historyList.children.length > 5) {
-        historyList.removeChild(historyList.lastChild);
-    }
+    if (historyList.children.length > 10) historyList.removeChild(historyList.lastChild);
 }
 
-generateBtn.addEventListener('click', drawSequence);
+lever.addEventListener('click', drawSequence);
